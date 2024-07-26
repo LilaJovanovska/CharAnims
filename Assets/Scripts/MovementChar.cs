@@ -25,7 +25,7 @@ public class MovementChar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        MoveLeftAndRight();
+        Move();
         SimpleDodge();
         DodgeSideways();
         Jump();
@@ -42,7 +42,7 @@ public class MovementChar : MonoBehaviour
         _animator.SetBool(isRunningInjuredHash, isRunningInjured);
     }
 
-    private void MoveLeftAndRight()
+    private void Move()
     {
         var isWalking = Input.GetKey(KeyCode.A)
                         || Input.GetKey(KeyCode.D)
@@ -61,6 +61,16 @@ public class MovementChar : MonoBehaviour
 
     private void DodgeSideways()
     {
+        //code for dodging left
+        var isDodgingLeft = Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.Space);
+        var isDodgingLeftHash = Animator.StringToHash("isDodgingLeft");
+        _animator.SetBool(isDodgingLeftHash, isDodgingLeft);
+
+        //code for dodging right
+        var isDodgingRight = Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.Space);
+        var isDodgingRightHash = Animator.StringToHash("isDodgingRight");
+        _animator.SetBool(isDodgingRightHash, isDodgingRight);
+
     }
 
     private void Jump()
@@ -68,5 +78,7 @@ public class MovementChar : MonoBehaviour
         var isJumping = Input.GetKey(KeyCode.F);
         var isJumpingHash = Animator.StringToHash("isJumping");
         _animator.SetBool(isJumpingHash, isJumping);
+
+        //fix code: mora F da drzham dur skoka za da se izvrshi cela animacija
     }
 }

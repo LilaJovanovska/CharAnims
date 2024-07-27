@@ -6,7 +6,7 @@ using UnityEngine;
 public class MovementChar : MonoBehaviour
 {
     [SerializeField] private GameObject player;
-    private Rigidbody rb;
+    //private Rigidbody rb;
 
     [SerializeField] private float speed;
 
@@ -17,7 +17,7 @@ public class MovementChar : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+       // rb = GetComponent<Rigidbody>();
         _animator = GetComponent<Animator>();
 
     }
@@ -30,6 +30,7 @@ public class MovementChar : MonoBehaviour
         DodgeSideways();
         Jump();
         Run();
+        IdleForTooLong();
     }
 
     private void Run()
@@ -79,6 +80,11 @@ public class MovementChar : MonoBehaviour
         var isJumpingHash = Animator.StringToHash("isJumping");
         _animator.SetBool(isJumpingHash, isJumping);
 
-        //fix code: mora F da drzham dur skoka za da se izvrshi cela animacija
+        //fix code: mora F da drzham celo vreme dur skokne za da se izvrshi cela animacija
+    }
+
+    private void IdleForTooLong()
+    {
+
     }
 }
